@@ -1,0 +1,41 @@
+service: calculator-lambda-api
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs16.x
+  region: ap-southeast-3
+  profile: myawsprofile
+
+functions:
+  add:
+    handler: src/handler.add
+    events:
+      - http:
+          path: calculate/add
+          method: post
+          cors: true
+  multiply:
+    handler: src/handler.multiply
+    events:
+      - http:
+          path: calculate/multiply
+          method: post
+          cors: true
+  subtract:
+    handler: src/handler.subtract
+    events:
+      - http:
+          path: calculate/subtract
+          method: post
+          cors: true
+  divide:
+    handler: src/handler.divide
+    events:
+      - http:
+          path: calculate/divide
+          method: post
+          cors: true
+
+plugins:
+  - serverless-esbuild
